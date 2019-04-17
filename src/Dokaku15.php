@@ -9,8 +9,7 @@ class Dokaku15
     public function run(string $input) : string
     {
         $lines = $this->getLines($input);
-        $result = [];
-        for ($i = 0, $polygonNum = count($lines) - 1; $i < $polygonNum; $i++) {
+        for ($i = 0,  $result = [], $polygonNum = count($lines) - 1; $i < $polygonNum; $i++) {
             $distance = $lines[$i + 1] - $lines[$i];
             $result[] = $this->getPolygon($distance);
         }
