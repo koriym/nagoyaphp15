@@ -13,7 +13,7 @@ class Dokaku15Test extends TestCase
      */
     protected $dokaku15;
 
-    protected function setUp(): void
+    protected function setUp() : void
     {
         $this->dokaku15 = new Dokaku15;
     }
@@ -21,9 +21,9 @@ class Dokaku15Test extends TestCase
     /**
      * @dataProvider dataProvider
      */
-    public function test(string $input, string $expected): void
+    public function test(string $input, string $expected) : void
     {
-        $this->assertEquals($expected, $this->dokaku15->run($input));
+        $this->assertSame($expected, $this->dokaku15->run($input));
     }
 
     public function dataProvider()
