@@ -8,8 +8,8 @@ class Dokaku15
 {
     public function run(string $input) : string
     {
-        $lines = $this->getLines($input);
-        for ($i = 0, $polygonNum = count($lines) - 1, $result = []; $i < $polygonNum; $i++) {
+        [$lines, $polygonNum] = $this->getPolygonMeta($input);
+        for ($i = 0, $result = []; $i < $polygonNum; $i++) {
             $distance = $lines[$i + 1] - $lines[$i];
             $result[] = $this->getPolygon($distance);
         }
@@ -18,7 +18,7 @@ class Dokaku15
         return implode('', $result);
     }
 
-    private function getLines(string $input) : array
+    private function getPolygonMeta(string $input) : array
     {
         $bin = sprintf('%08d', decbin((int) $input));
         $inputs = str_split($bin, 1);
@@ -30,8 +30,9 @@ class Dokaku15
         }
         $lines = array_keys($inputs);
         $lines[] = 8 + $lines[0]; // virtual last line
+        $polygonNum = count($lines) - 1;
 
-        return $lines;
+        return [$lines, $polygonNum];
     }
 
     private function getPolygon(int $distance) : int
