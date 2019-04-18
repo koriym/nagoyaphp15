@@ -15,7 +15,7 @@ class Dokaku15
         }
         sort($result);
 
-        return implode('', $result);
+        return implode($result);
     }
 
     private function getPolygonMeta(string $input) : array
